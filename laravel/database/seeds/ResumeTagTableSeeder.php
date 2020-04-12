@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ResumeTagMappingsTableSeeder extends Seeder
+class ResumeTagTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class ResumeTagMappingsTableSeeder extends Seeder
         foreach ($resumeIdList as $resumeId) {
             foreach ($tagIdList as $tagId) {
                 if (crc32((17*$resumeId).(23*$tagId)) % 3 == 0)
-                    App\ResumeTagMapping::create(['resume_id' => $resumeId, 'tag_id' => $tagId]);
+                    App\ResumeTag::create(['resume_id' => $resumeId, 'tag_id' => $tagId]);
             }
         }
     }

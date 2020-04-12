@@ -9,4 +9,9 @@ class Name extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function resume()
+    {
+        return $this->hasMany(Resume::class);
+    }
 }
