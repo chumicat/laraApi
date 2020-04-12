@@ -14,7 +14,7 @@ class ResumeTagController extends Controller
      */
     public function index()
     {
-        //
+        return ResumeTag::all();
     }
 
     /**
