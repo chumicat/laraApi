@@ -28,6 +28,10 @@ class CreateResumeTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resume_tag_mappings');
+        Schema::table('resume_tag', function (Blueprint $table) {
+            $table->dropForeign(['resume_id']);
+            $table->dropForeign(['tag_id']);
+        });
+        Schema::dropIfExists('resume_tag');
     }
 }

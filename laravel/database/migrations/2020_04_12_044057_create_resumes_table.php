@@ -28,6 +28,9 @@ class CreateResumesTable extends Migration
      */
     public function down()
     {
+        Schema::table('resumes', function (Blueprint $table) {
+            $table->dropForeign(['name_id']);
+        });
         Schema::dropIfExists('resumes');
     }
 }
