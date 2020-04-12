@@ -15,8 +15,8 @@ class CreateResumeTagMappingsTable extends Migration
     {
         Schema::create('resume_tag_mappings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resume_id')->comment('自傳 id');
-            $table->foreignId('tag_id')->comment('標籤 id');
+            $table->foreignId('resume_id')->constrained()->onDelete('cascade')->comment('自傳 id');
+            $table->foreignId('tag_id')->constrained()->onDelete('cascade')->comment('標籤 id');
             $table->timestamps();
         });
     }

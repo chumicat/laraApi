@@ -15,7 +15,7 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('name_id')->comment('姓名 id');
+            $table->foreignId('name_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('姓名 id');
             $table->text('resume')->comment('自傳');
             $table->timestamps();
         });
