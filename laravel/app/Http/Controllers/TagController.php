@@ -80,6 +80,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tag::findOrFail($id)->delete();
+        return 204;
     }
 }

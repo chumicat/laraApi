@@ -80,6 +80,7 @@ class NameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Name::findOrFail($id)->delete();
+        return 204;
     }
 }

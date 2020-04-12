@@ -80,6 +80,7 @@ class ResumeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Resume::findOrFail($id)->delete();
+        return 204;
     }
 }

@@ -80,6 +80,7 @@ class ResumeTagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ResumeTag::findOrFail($id)->delete();
+        return 204;
     }
 }
