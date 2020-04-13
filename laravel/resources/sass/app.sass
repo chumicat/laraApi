@@ -1,0 +1,53 @@
+$tableColor: blue
+$migrateSpace: 5px
+
+body
+  background-color: linen
+
+h1
+  color: green
+
+h3
+  color: $tableColor
+  text-align: center
+
+@mixin bar
+  margin-left: $migrateSpace
+  margin-right: $migrateSpace
+  width: 10%
+  height: 100%
+  text-align: left
+  float: left
+
+.bars
+  margin-left: $migrateSpace
+  margin-right: $migrateSpace
+  width: 10%
+  height: 100%
+  text-align: left
+  float: left
+
+#header
+  background-color: #FFD4D4
+  text-align: center
+  line-height: 80px
+
+#name
+  +bar
+  background-color: LightSalmon
+
+#tag
+  +bar
+  background-color: DarkTurquoise
+
+#resume
+  +bar
+  background-color: LightGreen
+  width: 20%
+
+#tagresume
+  +bar
+  background-color: Plum
+  width: 50%
+
+

@@ -1,0 +1,70 @@
+body {
+  background-color: linen;
+}
+
+h1 {
+  color: green;
+}
+
+h3 {
+  color: blue;
+  text-align: center;
+}
+
+.bars {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+  height: 100%;
+  text-align: left;
+  float: left;
+}
+
+#header {
+  background-color: #FFD4D4;
+  text-align: center;
+  line-height: 80px;
+}
+
+#name {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+  height: 100%;
+  text-align: left;
+  float: left;
+  background-color: LightSalmon;
+}
+
+#tag {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+  height: 100%;
+  text-align: left;
+  float: left;
+  background-color: DarkTurquoise;
+}
+
+#resume {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+  height: 100%;
+  text-align: left;
+  float: left;
+  background-color: LightGreen;
+  width: 20%;
+}
+
+#tagresume {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+  height: 100%;
+  text-align: left;
+  float: left;
+  background-color: Plum;
+  width: 50%;
+}
+

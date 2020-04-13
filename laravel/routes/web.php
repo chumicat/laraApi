@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('rts', 'RtsController');
+Route::resource('ntr', 'RtsController');

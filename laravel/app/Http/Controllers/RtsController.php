@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Name;
+use App\Resume;
+use App\Tag;
+use App\ResumeTag;
 
 class RtsController extends Controller
 {
@@ -12,8 +16,27 @@ class RtsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $nrt = [];
+        $rt = ResumeTag::join('tags', 'tag_id', '=', 'tags.id')
+            ->join('resumes', 'resume_id', '=', 'resumes.id')
+            ->join('names', 'name_id', '=', 'names.id')
+            ->select('resume_id', 'tag', 'resume', 'name')
+            ->get();
+        foreach ($rt as $r) {
+            $id = $r['resume_id'];
+            if (! isset($nrt[$id]))
+                $nrt[$id] = ['resume' => $r['resume'], 'name' => $r['name'], 'tag' => ''];
+            $nrt[$id]['tag'] .= $r['tag'].', ';
+        }
+        return view('ntr', ['vars' => 
+            [
+                'name' => Name::all(),
+                'tag' => Tag::all(),
+                'resume' => Resume::all(),
+                'resumetag' => $nrt
+            ]
+        ]);
     }
 
     /**
