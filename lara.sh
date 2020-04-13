@@ -60,6 +60,7 @@ case "$1" in
                 test -r .gitignore || cp laravel/.gitignore ./
                 test -r .gitattributes || cp laravel/.gitattributes ./
                 git check-ignore -q laradock || echo 'laradock' >> .gitignore
+                git check-ignore -q .ssh || echo '/.ssh' >> .gitignore
                 git add .
                 git commit -m 'first commit'
                 ;;
@@ -107,11 +108,12 @@ case "$1" in
             for i in {30..1}; do echo "Rest $i s to go"; sleep 1; done
         fi
 
+        cp -r ~/.ssh ./
         cd laradock
         docker-compose up -d nginx mysql redis workspace
         docker ps
-        docker-compose exec --user=laradock workspace bash -c "git config --global user.email $gitEmail; git config --global user.name $gitName"
-        docker-compose exec --user=root workspace bash -c "git config --global user.email $gitEmail; git config --global user.name $gitName"
+        docker-compose exec --user=laradock workspace bash -c "git config --global user.email $gitEmail; git config --global user.name $gitName; mv .ssh ~;"
+        docker-compose exec --user=root workspace bash -c "git config --global user.email $gitEmail; git config --global user.name $gitName; mv .ssh ~;"
         docker-compose exec --user=root workspace bash -c "apt update; apt install fish -y"
         cd ../
         
