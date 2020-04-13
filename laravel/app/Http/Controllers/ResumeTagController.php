@@ -69,7 +69,9 @@ class ResumeTagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $row = ResumeTag::findOrFail($id);
+        $row->update($request->all());
+        return $row;
     }
 
     /**

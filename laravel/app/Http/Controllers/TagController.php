@@ -70,7 +70,9 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $row = Tag::findOrFail($id);
+        $row->update($request->all());
+        return $row;
     }
 
     /**

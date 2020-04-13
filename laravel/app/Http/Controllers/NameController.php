@@ -69,7 +69,9 @@ class NameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $row = Name::findOrFail($id);
+        $row->update($request->all());
+        return $row;
     }
 
     /**

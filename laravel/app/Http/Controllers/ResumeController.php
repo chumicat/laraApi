@@ -69,7 +69,9 @@ class ResumeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $row = Resume::findOrFail($id);
+        $row->update($request->all());
+        return $row;
     }
 
     /**
