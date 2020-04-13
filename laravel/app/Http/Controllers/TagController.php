@@ -35,7 +35,8 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (isset($request['id']) or isset($request['created_at']) or isset($request['updated_at'])) return 422;
+        return Tag::firstOrCreate($request->all());
     }
 
     /**
