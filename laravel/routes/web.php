@@ -17,6 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function(){
-    return App\Tag::all();
-});
+Route::resource('rts', 'RtsController');
