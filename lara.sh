@@ -45,6 +45,14 @@ case "$1" in
             -e "s/DB_PASSWORD=/DB_PASSWORD=secret/" \
             laravel/.env > tmp;
         mv tmp laravel/.env
+
+        cd laradock
+        docker-compose exec --user=laradock workspace bash -c "
+            cd laravel;
+            php artisan migrate:fresh --seed;
+            php artisan migrate:status;
+        "
+        cd ../
         
         if [[ "$3" == '-'*'c'* ]]; then # -c case, down docker-compose
             bash "$0" down
