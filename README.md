@@ -45,7 +45,7 @@ bash lara.sh init -d # Run this if hadn't start docker-daemon
 * Foreign key will be restrict and not able to change database value
 
 |Method|Link|Method|Genre|
-|-|-|-|-|-|
+|---|---|---|---|
 |POST|http://laravel.test/api/name|name.store|api|
 |GET\|HEAD|http://laravel.test/api/name|name.index|api|
 |GET\|HEAD|http://laravel.test/api/name/{name}|name.show|api|
