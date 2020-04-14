@@ -64,7 +64,7 @@ class NtrController extends Controller
                 'name' => Name::all(),
                 'tag' => Tag::all(),
                 'resume' => Resume::all(),
-                'resumetag' => $this->toNtr($rt, $tagList)
+                'ntr' => $this->toNtr($rt, $tagList)
             ]
         ]);
     }
@@ -76,12 +76,12 @@ class NtrController extends Controller
      */
     public function create()
     {
-        return view('ntr', ['vars' => 
+        return view('ntrCreate', ['vars' => 
             [
                 'name' => [],
                 'tag' => Tag::all(),
                 'resume' => [],
-                'resumetag' => []
+                'ntr' => []
             ]
         ]);
     }
@@ -112,7 +112,7 @@ class NtrController extends Controller
                 'name' => Name::all(),
                 'tag' => Tag::all(),
                 'resume' => Resume::all(),
-                'resumetag' => $this->toNtr($rt)
+                'ntr' => $this->toNtr($rt)
             ]
         ]);
     }
