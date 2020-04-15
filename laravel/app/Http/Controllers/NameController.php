@@ -11,20 +11,25 @@ class NameController extends Controller
     /**
      * @OA\Get(
      *     path="/api/name",
-     *     operationId="nameIndex",
+     *     operationId="getNameIndex",
      *     tags={"Name"},
      *     summary="index",
      *     description="Display a listing of the name table.",
      *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
      *     @OA\Response(response=500, description="server error")
      * )
+     * 
      * @OA\Head(
      *     path="/api/name",
-     *     operationId="nameIndex",
+     *     operationId="headNameIndex",
      *     tags={"Name"},
      *     summary="index",
      *     description="Display a listing of the name table.",
      *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
      *     @OA\Response(response=500, description="server error")
      * )
      *
@@ -40,15 +45,17 @@ class NameController extends Controller
     /**
      * @OA\Post(
      *     path="/api/name",
-     *     operationId="nameStore",
+     *     operationId="postNameStore",
      *     tags={"Name"},
      *     summary="store",
-     *     description="Display a listing of the name table.",
+     *     description="Store a newly created name in name table.",
      *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
      *     @OA\Response(response=500, description="server error")
      * )
      *
-     * Store a newly created resource in storage.
+     * Store a newly created name in name table.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -60,7 +67,45 @@ class NameController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/name/{id}",
+     *     operationId="getNameShow",
+     *     tags={"Name"},
+     *     summary="show",
+     *     description="Display the specified name with name id.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Name ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * 
+     * @OA\Head(
+     *     path="/api/name/{id}",
+     *     operationId="headNameShow",
+     *     tags={"Name"},
+     *     summary="show",
+     *     description="Display the specified name with name id.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Name ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * 
+     * Display the specified name with name id.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -71,7 +116,45 @@ class NameController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/name/{id}",
+     *     operationId="putNameUpdate",
+     *     tags={"Name"},
+     *     summary="update",
+     *     description="Update the specified name in name table.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Name ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * 
+     * @OA\Patch(
+     *     path="/api/name/{id}",
+     *     operationId="patchNameUpdate",
+     *     tags={"Name"},
+     *     summary="update",
+     *     description="Update the specified name in name table.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Name ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * 
+     * Update the specified name in name table.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -85,7 +168,26 @@ class NameController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/name/{id}",
+     *     operationId="deleteNameDestroy",
+     *     tags={"Name"},
+     *     summary="destroy",
+     *     description="Remove the specified name from name table.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Name ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=400, description="Bad request"),
+     *     @OA\Response(response=404, description="Resource Not Found"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * 
+     * Remove the specified name from name table.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

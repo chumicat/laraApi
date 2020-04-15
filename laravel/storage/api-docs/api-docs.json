@@ -9,42 +9,87 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/projects": {
+        "/api/name": {
             "get": {
                 "tags": [
-                    "Projects"
+                    "Name"
                 ],
-                "summary": "Get list of projects",
-                "description": "Returns list of projects",
-                "operationId": "getProjectsList",
+                "summary": "index",
+                "description": "Display a listing of the name table.",
+                "operationId": "getNameIndex",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     },
                     "400": {
                         "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
                     }
-                },
-                "security": [
-                    {
-                        "api_key_security_example": []
+                }
+            },
+            "post": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "store",
+                "description": "Store a newly created name in name table.",
+                "operationId": "postNameStore",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
                     }
-                ]
+                }
+            },
+            "head": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the name table.",
+                "operationId": "headNameIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
             }
         },
-        "/projects/{id}": {
+        "/api/name/{id}": {
             "get": {
                 "tags": [
-                    "Projects"
+                    "Name"
                 ],
-                "summary": "Get project information",
-                "description": "Returns project data",
-                "operationId": "getProjectById",
+                "summary": "show",
+                "description": "Display the specified name with name id.",
+                "operationId": "getNameShow",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Project id",
+                        "description": "Name ID",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -60,45 +105,72 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "oauth2_security_example": [
-                            "write:projects",
-                            "read:projects"
-                        ]
-                    }
-                ]
-            }
-        },
-        "/api/name": {
-            "get": {
-                "tags": [
-                    "Name"
-                ],
-                "summary": "index",
-                "description": "Display a listing of the name table.",
-                "operationId": "nameIndex",
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
                     },
                     "500": {
                         "description": "server error"
                     }
                 }
             },
-            "post": {
+            "put": {
                 "tags": [
                     "Name"
                 ],
-                "summary": "store",
-                "description": "Display a listing of the name table.",
-                "operationId": "nameStore",
+                "summary": "update",
+                "description": "Update the specified name in name table.",
+                "operationId": "putNameUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Name ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "destroy",
+                "description": "Remove the specified name from name table.",
+                "operationId": "deleteNameDestroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Name ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     },
                     "500": {
                         "description": "server error"
@@ -109,12 +181,767 @@
                 "tags": [
                     "Name"
                 ],
-                "summary": "index",
-                "description": "Display a listing of the name table.",
-                "operationId": "nameIndex",
+                "summary": "show",
+                "description": "Display the specified name with name id.",
+                "operationId": "headNameShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Name ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "update",
+                "description": "Update the specified name in name table.",
+                "operationId": "patchNameUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Name ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/resume": {
+            "get": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the resumes table.",
+                "operationId": "getResumeIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "store",
+                "description": "Store a newly created resume in resumes table.",
+                "operationId": "postResumeStore",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the resumes table.",
+                "operationId": "headResumeIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/resume/{id}": {
+            "get": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "show",
+                "description": "Display the specified resume with resume id.",
+                "operationId": "getResumeShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "update",
+                "description": "Update the specified resume in resumes table.",
+                "operationId": "putResumeUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "destroy",
+                "description": "Remove the specified resume from resumes table.",
+                "operationId": "deleteResumeDestroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "show",
+                "description": "Display the specified resume with resume id.",
+                "operationId": "headResumeShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Resume"
+                ],
+                "summary": "update",
+                "description": "Update the specified resume in resumes table.",
+                "operationId": "patchResumeUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/resumetag": {
+            "get": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the resume_tag table.",
+                "operationId": "getResumeTagIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "store",
+                "description": "Store a newly created resume-tag map data in resume_tag table.",
+                "operationId": "postResumeTagStore",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the resume_tag table.",
+                "operationId": "headResumeTagIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/resumetag/{id}": {
+            "get": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "show",
+                "description": "Display the specified resume-tag map data with resumetag id.",
+                "operationId": "getResumeTagShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ResumeTag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "update",
+                "description": "Update the specified resume-tag map data in resume_tag table.",
+                "operationId": "putResumeTagUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ResumeTag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "destroy",
+                "description": "Remove the specified resume-tag map data from resume_tag table.",
+                "operationId": "deleteResumeTagDestroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ResumeTag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "show",
+                "description": "Display the specified resume-tag map data with resumetag id.",
+                "operationId": "headResumeTagShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ResumeTag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "ResumeTag"
+                ],
+                "summary": "update",
+                "description": "Update the specified resume-tag map data in resume_tag table.",
+                "operationId": "patchResumeTagUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ResumeTag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/tag": {
+            "get": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the tags table.",
+                "operationId": "getTagIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "store",
+                "description": "Store a newly created tag in tags table.",
+                "operationId": "postTagStore",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the tags table.",
+                "operationId": "headTagIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
+        },
+        "/api/tag/{id}": {
+            "get": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "show",
+                "description": "Display the specified tag with tag id.",
+                "operationId": "getTagShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "update",
+                "description": "Update the specified tag in tags table.",
+                "operationId": "putTagUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "destroy",
+                "description": "Remove the specified tag from tags table.",
+                "operationId": "deleteTagDestroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "show",
+                "description": "Display the specified tag with tag id.",
+                "operationId": "headTagShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Tag"
+                ],
+                "summary": "update",
+                "description": "Update the specified tag in tags table.",
+                "operationId": "patchTagUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tag ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     },
                     "500": {
                         "description": "server error"
