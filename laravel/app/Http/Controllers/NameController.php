@@ -7,8 +7,28 @@ use App\Name;
 
 class NameController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/name",
+     *     operationId="nameIndex",
+     *     tags={"Name"},
+     *     summary="index",
+     *     description="Display a listing of the name table.",
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     * @OA\Head(
+     *     path="/api/name",
+     *     operationId="nameIndex",
+     *     tags={"Name"},
+     *     summary="index",
+     *     description="Display a listing of the name table.",
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     *
+     * Display a listing of the name table.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,6 +38,16 @@ class NameController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/name",
+     *     operationId="nameStore",
+     *     tags={"Name"},
+     *     summary="store",
+     *     description="Display a listing of the name table.",
+     *     @OA\Response(response=200, description="successful operation"),
+     *     @OA\Response(response=500, description="server error")
+     * )
+     *
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

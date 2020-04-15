@@ -1,27 +1,13 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "L5 OpenApi ASDF",
-        "description": "L5 Swagger OpenApi description",
+        "title": "LaraApi",
+        "description": "LaraApi project API documents",
         "contact": {
-            "email": "darius@matulionis.lt"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "email": "russell57260620@gmail.com"
         },
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": "http://my-default-host.com",
-            "description": "L5 Swagger OpenApi dynamic host server"
-        },
-        {
-            "url": "https://projects.dev/api/v1",
-            "description": "L5 Swagger OpenApi Server"
-        }
-    ],
     "paths": {
         "/projects": {
             "get": {
@@ -85,6 +71,56 @@
                     }
                 ]
             }
+        },
+        "/api/name": {
+            "get": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the name table.",
+                "operationId": "nameIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "store",
+                "description": "Display a listing of the name table.",
+                "operationId": "nameStore",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Name"
+                ],
+                "summary": "index",
+                "description": "Display a listing of the name table.",
+                "operationId": "nameIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -107,24 +143,48 @@
     },
     "tags": [
         {
-            "name": "project",
-            "description": "Everything about your Projects",
+            "name": "Name",
+            "description": "Api to access 'names' database",
             "externalDocs": {
-                "description": "Find out more",
-                "url": "http://swagger.io"
+                "description": "Lint to api",
+                "url": "http://laravel.test/api/name"
             }
         },
         {
-            "name": "user",
-            "description": "Operations about user",
+            "name": "Resume",
+            "description": "Api to access 'resumes' database",
             "externalDocs": {
-                "description": "Find out more about",
-                "url": "http://swagger.io"
+                "description": "Lint to api",
+                "url": "http://laravel.test/api/resume"
+            }
+        },
+        {
+            "name": "Tag",
+            "description": "Api to access 'tags' database",
+            "externalDocs": {
+                "description": "Lint to api",
+                "url": "http://laravel.test/api/tag"
+            }
+        },
+        {
+            "name": "ResumeTag",
+            "description": "Api to access 'resume_tag' database",
+            "externalDocs": {
+                "description": "Lint to api",
+                "url": "http://laravel.test/api/resumetag"
+            }
+        },
+        {
+            "name": "NTR",
+            "description": "Site to access all database above",
+            "externalDocs": {
+                "description": "Lint to site",
+                "url": "http://laravel.test/ntr"
             }
         }
     ],
     "externalDocs": {
-        "description": "Find out more about Swagger",
-        "url": "http://swagger.io"
+        "description": "Project Github",
+        "url": "https://github.com/chumicat/laraApi"
     }
 }

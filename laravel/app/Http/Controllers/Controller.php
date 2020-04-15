@@ -14,20 +14,14 @@ class Controller extends BaseController
 
 /**
  * @OA\Info(
- *      version="1.0.0",
- *      title="L5 OpenApi ASDF",
- *      description="L5 Swagger OpenApi description",
- *      @OA\Contact(
- *          email="darius@matulionis.lt"
- *      ),
- *     @OA\License(
- *         name="Apache 2.0",
- *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     version="1.0.0",
+ *     title="LaraApi",
+ *     description="LaraApi project API documents",
+ *     @OA\Contact(
+ *         email="russell57260620@gmail.com"
  *     )
  * )
  */
-
-
 
 /**
  * @OA\SecurityScheme(
@@ -49,25 +43,53 @@ class Controller extends BaseController
 
 /**
  * @OA\Tag(
- *     name="project",
- *     description="Everything about your Projects",
+ *     name="Name",
+ *     description="Api to access 'names' database",
  *     @OA\ExternalDocumentation(
- *         description="Find out more",
- *         url="http://swagger.io"
+ *         description="Lint to api",
+ *         url="http://laravel.test/api/name"
  *     )
  * )
  *
  * @OA\Tag(
- *     name="user",
- *     description="Operations about user",
+ *     name="Resume",
+ *     description="Api to access 'resumes' database",
  *     @OA\ExternalDocumentation(
- *         description="Find out more about",
- *         url="http://swagger.io"
+ *         description="Lint to api",
+ *         url="http://laravel.test/api/resume"
  *     )
  * )
+ * 
+ * @OA\Tag(
+ *     name="Tag",
+ *     description="Api to access 'tags' database",
+ *     @OA\ExternalDocumentation(
+ *         description="Lint to api",
+ *         url="http://laravel.test/api/tag"
+ *     )
+ * )
+ * 
+ * @OA\Tag(
+ *     name="ResumeTag",
+ *     description="Api to access 'resume_tag' database",
+ *     @OA\ExternalDocumentation(
+ *         description="Lint to api",
+ *         url="http://laravel.test/api/resumetag"
+ *     )
+ * )
+ * 
+ * @OA\Tag(
+ *     name="NTR",
+ *     description="Site to access all database above",
+ *     @OA\ExternalDocumentation(
+ *         description="Lint to site",
+ *         url="http://laravel.test/ntr"
+ *     )
+ * )
+ * 
  * @OA\ExternalDocumentation(
- *     description="Find out more about Swagger",
- *     url="http://swagger.io"
+ *     description="Project Github",
+ *     url="https://github.com/chumicat/laraApi"
  * )
  */
 
