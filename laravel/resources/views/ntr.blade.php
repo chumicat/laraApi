@@ -12,21 +12,21 @@
             <h3>Name</h3>
             @yield('nameHead')
             @foreach ($vars['name'] as $var)
-                <li>{{ $var['name'] }}</li>
+                <li>{{ $var['id'] }}, {{ $var['name'] }}</li>
             @endforeach
         </div>
     　  <div id="tag" class='bar'>
             <h3>Tag</h3>
             @yield('tagHead')
             @foreach ($vars['tag'] as $var)
-                <li>{{ $var['tag'] }}</li>
+                <li>{{ $var['id'] }}, {{ $var['tag'] }}</li>
             @endforeach
         </div>
     　  <div id="resume" class='bar'>
             <h3>Resume</h3>
             @yield('resumeHead')
             @foreach ($vars['resume'] as $var)
-                <li>{{ $var['resume'] }}</li>
+                <li>{{ $var['id'] }}, {{ $var['resume'] }}</li>
             @endforeach
         </div>
     　  <div id="tagresume" class='bar'>
