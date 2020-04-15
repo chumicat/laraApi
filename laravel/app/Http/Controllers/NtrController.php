@@ -43,6 +43,19 @@ class NtrController extends Controller
         return $ntr;
     }
 
+    private function ntrsearch(Request $request) {
+        $r = $request->toArray();
+        $rt = $this->join();
+        $tagList = isset($r['tag']) ? explode(',', $r['tag']) : [];
+
+        if ($r != [])
+        foreach ($r as $key => $val)
+            if ($key != 'tag')
+                $rt = $rt->where($key, $val);
+
+        return $this->toNtr($rt, $tagList);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -50,21 +63,13 @@ class NtrController extends Controller
      */
     public function index(Request $request)
     {
-        $r = $request->toArray();
-        $rt = $this->join();
-        $tagList = isset($r['tag']) ? explode(',', $r['tag']) : [];
-
-        if ($r != [])
-            foreach ($r as $key => $val)
-                if ($key != 'tag')
-                    $rt = $rt->where($key, $val);
 
         return view('ntr', ['vars' => 
             [
                 'name' => Name::all(),
                 'tag' => Tag::all(),
                 'resume' => Resume::all(),
-                'ntr' => $this->toNtr($rt, $tagList)
+                'ntr' => $this->ntrsearch($request)
             ]
         ]);
     }
@@ -74,14 +79,14 @@ class NtrController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('ntrCreate', ['vars' => 
             [
-                'name' => [],
+                'name' => Name::all(),
                 'tag' => Tag::all(),
-                'resume' => [],
-                'ntr' => []
+                'resume' => Resume::all(),
+                'ntr' => $this->ntrsearch($request)
             ]
         ]);
     }
