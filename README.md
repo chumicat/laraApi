@@ -33,12 +33,17 @@ bash lara.sh init -d # Run this if hadn't start docker-daemon
 
 ## API Usage
 ### Browser All Data
-* You can see all data throw browser at [NTR local site](http://laravel.test/ntr) after initial the project.
+* You can see all data through browser at [NTR local site](http://laravel.test/ntr) after initial the project.
 * Request is supported, here are some example:
   + http://laravel.test/ntr?name=Balloon
   + http://laravel.test/ntr?tag=High
   + http://laravel.test/ntr?name=Snic&tag=Delightful
   + http://laravel.test/ntr?tag=Cat&tag=Dog
+* NTR locat site also implement create  
+  You can add data and refresh page to see the result  
+  Since Request is supported either, It should be easier to search.  
+  Example: 
+  + http://laravel.test/ntr/create?name=Balloon
 
 ### API List
 * You can use [Postman](https://www.postman.com/) to use api below
@@ -67,6 +72,7 @@ bash lara.sh init -d # Run this if hadn't start docker-daemon
 |GET\|HEAD|http://laravel.test/api/tag/{tag}|tag.show|api|
 |PUT\|PATCH|http://laravel.test/api/tag/{tag}|tag.update|api|
 |GET\|HEAD|http://laravel.test/ntr|ntr.index|web|
+|GET\|HEAD|http://laravel.test/ntr/create|ntr.create|web|
 
 
 ## lara command
