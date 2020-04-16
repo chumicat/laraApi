@@ -48,10 +48,18 @@ class ResumeTagController extends Controller
      *     tags={"ResumeTag"},
      *     summary="store",
      *     description="Store a newly created resume-tag map data in resume_tag table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resume_id", type="integer", description="resume_id of resumetag", nullable="false"),
+     *             @OA\Property(property="tag_id", type="integer", description="tag_id of resumetag", nullable="false"),
+     *             example={"resume_id": "5", "tag_id": "3"}
+     *         ),
+     *     ),
+     *     @OA\Response(response=200, description="Resume-Tag map already exist"),
+     *     @OA\Response(response=201, description="Successful store"),
+     *     @OA\Response(response=400, description="Bad request ('resume_id' and 'tag_id' are necessary)"),
+     *     @OA\Response(response=422, description="Unprocessable Entity (Only 'resume_id' and 'tag_id' are acceptable)"),
+     *     @OA\Response(response=500, description="Server error"),
      * )
      * 
      * Store a newly created resume-tag map data in resume_tag table.
@@ -61,7 +69,8 @@ class ResumeTagController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request['id']) or isset($request['created_at']) or isset($request['updated_at'])) return 422;
+        if (!(isset($request['resume_id']) and isset($request['tag_id']))) return response('"resume_id" and "tag_id" are necessary', 400);
+        if (count($request->Toarray()) != 2) return response('Only allowed "resume_id" and "tag_id" as Parameter', 422);
         return ResumeTag::firstOrCreate($request->all());
     }
 
@@ -79,10 +88,8 @@ class ResumeTagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Head(
@@ -98,10 +105,8 @@ class ResumeTagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Display the specified resume-tag map data with resumetag id.
@@ -128,10 +133,23 @@ class ResumeTagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="resume_id",
+     *         description="Resume ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag_id",
+     *         description="Tag ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in resume_tag table"),
+     *     @OA\Response(response=500, description="Server error ((resume_id, tag_id) pair must be unique in resume_tage table.)")
      * )
      * 
      * @OA\Patch(
@@ -147,10 +165,23 @@ class ResumeTagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="resume_id",
+     *         description="Resume ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag_id",
+     *         description="Tag ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in resume_tag table"),
+     *     @OA\Response(response=500, description="Server error ((resume_id, tag_id) pair must be unique in resume_tage table.)")
      * )
      * 
      * Update the specified resume-tag map data in resume_tag table.
@@ -180,10 +211,9 @@ class ResumeTagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=204, description="Successful delete"),
+     *     @OA\Response(response=404, description="ID not in resume_tag table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Remove the specified resource from storage.
@@ -194,6 +224,6 @@ class ResumeTagController extends Controller
     public function destroy($id)
     {
         ResumeTag::findOrFail($id)->delete();
-        return 204;
+        return response('Delete successfully', 204);
     }
 }

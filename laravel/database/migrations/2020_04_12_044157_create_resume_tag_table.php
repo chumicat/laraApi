@@ -17,6 +17,7 @@ class CreateResumeTagTable extends Migration
             $table->id();
             $table->foreignId('resume_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('自傳 id');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('標籤 id');
+            $table->unique(['resume_id', 'tag_id']);
             $table->timestamps();
         });
     }
