@@ -46,7 +46,7 @@ bash lara.sh init -d # Run this if hadn't start docker-daemon
   + http://laravel.test/ntr/create?name=Balloon
 
 ### API List
-* You can use [Postman](https://www.postman.com/) to use api below
+* You can use [Swagger API Document](http://laravel.test/api/documentation) to test each API after initial the project.
 * Foreign key will be restrict and not able to change database value
 
 |Method|Link|Method|Genre|
