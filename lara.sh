@@ -157,6 +157,7 @@ case "$1" in
 
     site)
         open http://$siteDomain/$2
+        open http://$siteDomain/api/documentation
         ;;
     
     lara)

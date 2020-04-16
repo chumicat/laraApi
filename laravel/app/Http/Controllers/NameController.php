@@ -15,10 +15,8 @@ class NameController extends Controller
      *     tags={"Name"},
      *     summary="index",
      *     description="Display a listing of the name table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Successful get all data"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Head(
@@ -27,10 +25,8 @@ class NameController extends Controller
      *     tags={"Name"},
      *     summary="index",
      *     description="Display a listing of the name table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Successful get all data"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      *
      * Display a listing of the name table.
@@ -49,10 +45,17 @@ class NameController extends Controller
      *     tags={"Name"},
      *     summary="store",
      *     description="Store a newly created name in name table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name", type="string", description="name to store", nullable="false"),
+     *             example={"name": "Flowey"}
+     *         ),
+     *     ),
+     *     @OA\Response(response=200, description="Name already exist"),
+     *     @OA\Response(response=201, description="Successful store"),
+     *     @OA\Response(response=400, description="Bad request ('name' is necessary)"),
+     *     @OA\Response(response=422, description="Unprocessable Entity (Only 'name' is acceptable)"),
+     *     @OA\Response(response=500, description="Server error"),
      * )
      *
      * Store a newly created name in name table.
@@ -62,7 +65,8 @@ class NameController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request['id']) or isset($request['created_at']) or isset($request['updated_at'])) return 422;
+        if (!isset($request['name'])) return response('"name" are necessary', 400);
+        if (count($request->Toarray()) != 1) return response('Only allowed "name" as Parameter', 422);
         return Name::firstOrCreate($request->all());
     }
 
@@ -80,10 +84,8 @@ class NameController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Head(
@@ -99,10 +101,8 @@ class NameController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Display the specified name with name id.
@@ -129,10 +129,16 @@ class NameController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in names table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Patch(
@@ -148,10 +154,16 @@ class NameController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in names table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Update the specified name in name table.
@@ -181,10 +193,9 @@ class NameController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=204, description="Successful delete"),
+     *     @OA\Response(response=404, description="ID not in names table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Remove the specified name from name table.
@@ -195,6 +206,6 @@ class NameController extends Controller
     public function destroy($id)
     {
         Name::findOrFail($id)->delete();
-        return 204;
+        return response('Delete successfully', 204);
     }
 }

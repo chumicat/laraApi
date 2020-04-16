@@ -48,10 +48,18 @@ class ResumeController extends Controller
      *     tags={"Resume"},
      *     summary="store",
      *     description="Store a newly created resume in resumes table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name_id", type="integer", description="name_id of resume", nullable="false"),
+     *             @OA\Property(property="resume", type="string", description="resume to store", nullable="false"),
+     *             example={"name_id": 2, "resume": "A new resume."}
+     *         ),
+     *     ),
+     *     @OA\Response(response=200, description="Name Id - Resume pair already exist"),
+     *     @OA\Response(response=201, description="Successful store"),
+     *     @OA\Response(response=400, description="Bad request ('name_id' and 'resume' are necessary)"),
+     *     @OA\Response(response=422, description="Unprocessable Entity (Only 'name_id' and 'resume' is acceptable)"),
+     *     @OA\Response(response=500, description="Server error"),
      * )
      * 
      * Store a newly created resource in storage.
@@ -61,7 +69,8 @@ class ResumeController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request['id']) or isset($request['created_at']) or isset($request['updated_at'])) return 422;
+        if (!(isset($request['name_id']) and isset($request['resume']))) return response('"name_id" and "resume" are necessary', 400);
+        if (count($request->Toarray()) != 2) return response('Only allowed "name_id" and "resume" as Parameter', 422);
         return Resume::firstOrCreate($request->all());
     }
 
@@ -79,10 +88,8 @@ class ResumeController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Head(
@@ -98,10 +105,8 @@ class ResumeController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Display the specified resource.
@@ -128,10 +133,23 @@ class ResumeController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="name_id",
+     *         description="Name ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in resumes table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Patch(
@@ -147,10 +165,23 @@ class ResumeController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="name_id",
+     *         description="Name ID",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in resumes table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Update the specified resource in storage.
@@ -180,10 +211,9 @@ class ResumeController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=204, description="Successful delete"),
+     *     @OA\Response(response=404, description="ID not in resumes table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Remove the specified resource from storage.
@@ -194,6 +224,6 @@ class ResumeController extends Controller
     public function destroy($id)
     {
         Resume::findOrFail($id)->delete();
-        return 204;
+        return response('Delete successfully', 204);
     }
 }

@@ -48,10 +48,17 @@ class TagController extends Controller
      *     tags={"Tag"},
      *     summary="store",
      *     description="Store a newly created tag in tags table.",
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="tag", type="string", description="tag to store", nullable="false"),
+     *             example={"tag": "Hero"}
+     *         ),
+     *     ),
+     *     @OA\Response(response=200, description="Tag already exist"),
+     *     @OA\Response(response=201, description="Successful store"),
+     *     @OA\Response(response=400, description="Bad request ('tag' is necessary)"),
+     *     @OA\Response(response=422, description="Unprocessable Entity (Only 'tag' is acceptable)"),
+     *     @OA\Response(response=500, description="Server error"),
      * )
      * 
      * Store a newly created tag in tags table.
@@ -61,7 +68,8 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request['id']) or isset($request['created_at']) or isset($request['updated_at'])) return 422;
+        if (!isset($request['tag'])) return response('"tag" are necessary', 400);
+        if (count($request->Toarray()) != 1) return response('Only allowed "tag" as Parameter', 422);
         return Tag::firstOrCreate($request->all());
     }
 
@@ -79,10 +87,8 @@ class TagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Head(
@@ -98,10 +104,8 @@ class TagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Display the specified tag with tag id.
@@ -128,10 +132,16 @@ class TagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in tags table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * @OA\Patch(
@@ -147,10 +157,16 @@ class TagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful update"),
+     *     @OA\Response(response=404, description="ID not in tags table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Update the specified tag in tags table.
@@ -180,10 +196,9 @@ class TagController extends Controller
      *         in="path",
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response=200, description="successful operation"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=404, description="Resource Not Found"),
-     *     @OA\Response(response=500, description="server error")
+     *     @OA\Response(response=204, description="Successful delete"),
+     *     @OA\Response(response=404, description="ID not in tags table"),
+     *     @OA\Response(response=500, description="Server error")
      * )
      * 
      * Remove the specified tag from tags table.
@@ -194,6 +209,6 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::findOrFail($id)->delete();
-        return 204;
+        return response('Delete successfully', 204);
     }
 }
