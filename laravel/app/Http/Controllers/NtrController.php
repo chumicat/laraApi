@@ -57,6 +57,72 @@ class NtrController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/ntr",
+     *     operationId="getNtrIndex",
+     *     tags={"NTR"},
+     *     summary="index (Please open in browser)",
+     *     description="Display listing of names, resumes, tags, resume_tag table. (Please open in browser)",
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Chumicat"
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Cat,Dog"
+     *     ),
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful get all data"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
+     * @OA\Head(
+     *     path="/ntr",
+     *     operationId="headNtrIndex",
+     *     tags={"NTR"},
+     *     summary="index (Please open in browser)",
+     *     description="Display listing of names, resumes, tags, resume_tag table. (Please open in browser)",
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Chumicat"
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Cat,Dog"
+     *     ),
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Successful get all data"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -75,6 +141,72 @@ class NtrController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/ntr/create",
+     *     operationId="getNtrCreate",
+     *     tags={"NTR"},
+     *     summary="create (Please open in browser)",
+     *     description="Add name, resume, tag, resume_rag with form.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Chumicat"
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Cat,Dog"
+     *     ),
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
+     * @OA\Head(
+     *     path="/ntr/create",
+     *     operationId="headNtrCreate",
+     *     tags={"NTR"},
+     *     summary="create (Please open in browser)",
+     *     description="Add name, resume, tag, resume_rag with form.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         description="Name",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Chumicat"
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag",
+     *         description="Tag",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string"),
+     *         example="Cat,Dog"
+     *     ),
+     *     @OA\Parameter(
+     *         name="resume",
+     *         description="Resume",
+     *         required=false,
+     *         in="query",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -103,6 +235,40 @@ class NtrController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/ntr/{id}",
+     *     operationId="getNtrShow",
+     *     tags={"NTR"},
+     *     summary="show (Please open in browser)",
+     *     description="Display the specified name, tag, resume with its id. (Please open in browser)",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Resume ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
+     * @OA\Head(
+     *     path="/ntr/{id}",
+     *     operationId="headNtrShow",
+     *     tags={"NTR"},
+     *     summary="show (Please open in browser)",
+     *     description="Display the specified name, tag, resume with its id. (Please open in browser)",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Resume ID",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="Finish operation"),
+     *     @OA\Response(response=500, description="Server error")
+     * )
+     * 
      * Display the specified resource.
      *
      * @param  int  $id
