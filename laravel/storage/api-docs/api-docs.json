@@ -60,11 +60,7 @@
                         "description": "Successful store"
                     },
                     "400": {
-<<<<<<< HEAD
-                        "description": "Bad request ('name' are necessary)"
-=======
                         "description": "Bad request ('name' is necessary)"
->>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     },
                     "422": {
                         "description": "Unprocessable Entity (Only 'name' is acceptable)"
@@ -251,8 +247,6 @@
                     },
                     "500": {
                         "description": "Server error"
-<<<<<<< HEAD
-=======
                     }
                 }
             }
@@ -274,7 +268,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Chumicat"
+                        "example": "Yuhang"
                     },
                     {
                         "name": "tag",
@@ -284,7 +278,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Cat,Dog"
+                        "example": "Holy,Cat"
                     },
                     {
                         "name": "resume",
@@ -321,7 +315,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Chumicat"
+                        "example": "Yuhang"
                     },
                     {
                         "name": "tag",
@@ -331,7 +325,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Cat,Dog"
+                        "example": "Holy,Cat"
                     },
                     {
                         "name": "resume",
@@ -370,7 +364,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Chumicat"
+                        "example": "Yuhang"
                     },
                     {
                         "name": "tag",
@@ -380,7 +374,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Cat,Dog"
+                        "example": "Holy,Cat"
                     },
                     {
                         "name": "resume",
@@ -417,7 +411,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Chumicat"
+                        "example": "Yuhang"
                     },
                     {
                         "name": "tag",
@@ -427,7 +421,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Cat,Dog"
+                        "example": "Holy,Cat"
                     },
                     {
                         "name": "resume",
@@ -501,7 +495,6 @@
                     },
                     "500": {
                         "description": "Server error"
->>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     }
                 }
             }
@@ -1119,11 +1112,7 @@
                         "description": "Successful store"
                     },
                     "400": {
-<<<<<<< HEAD
-                        "description": "Bad request ('tag' are necessary)"
-=======
                         "description": "Bad request ('tag' is necessary)"
->>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     },
                     "422": {
                         "description": "Unprocessable Entity (Only 'tag' is acceptable)"

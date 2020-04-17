@@ -69,7 +69,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Chumicat"
+     *         example="Yuhang"
      *     ),
      *     @OA\Parameter(
      *         name="tag",
@@ -77,7 +77,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Cat,Dog"
+     *         example="Holy,Cat"
      *     ),
      *     @OA\Parameter(
      *         name="resume",
@@ -102,7 +102,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Chumicat"
+     *         example="Yuhang"
      *     ),
      *     @OA\Parameter(
      *         name="tag",
@@ -110,7 +110,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Cat,Dog"
+     *         example="Holy,Cat"
      *     ),
      *     @OA\Parameter(
      *         name="resume",
@@ -153,7 +153,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Chumicat"
+     *         example="Yuhang"
      *     ),
      *     @OA\Parameter(
      *         name="tag",
@@ -161,7 +161,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Cat,Dog"
+     *         example="Holy,Cat"
      *     ),
      *     @OA\Parameter(
      *         name="resume",
@@ -186,7 +186,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Chumicat"
+     *         example="Yuhang"
      *     ),
      *     @OA\Parameter(
      *         name="tag",
@@ -194,7 +194,7 @@ class NtrController extends Controller
      *         required=false,
      *         in="query",
      *         @OA\Schema(type="string"),
-     *         example="Cat,Dog"
+     *         example="Holy,Cat"
      *     ),
      *     @OA\Parameter(
      *         name="resume",
