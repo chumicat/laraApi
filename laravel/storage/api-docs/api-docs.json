@@ -60,7 +60,11 @@
                         "description": "Successful store"
                     },
                     "400": {
+<<<<<<< HEAD
                         "description": "Bad request ('name' are necessary)"
+=======
+                        "description": "Bad request ('name' is necessary)"
+>>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     },
                     "422": {
                         "description": "Unprocessable Entity (Only 'name' is acceptable)"
@@ -247,6 +251,257 @@
                     },
                     "500": {
                         "description": "Server error"
+<<<<<<< HEAD
+=======
+                    }
+                }
+            }
+        },
+        "/ntr": {
+            "get": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "index (Please open in browser)",
+                "description": "Display listing of names, resumes, tags, resume_tag table. (Please open in browser)",
+                "operationId": "getNtrIndex",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Chumicat"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Tag",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Cat,Dog"
+                    },
+                    {
+                        "name": "resume",
+                        "in": "query",
+                        "description": "Resume",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get all data"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "index (Please open in browser)",
+                "description": "Display listing of names, resumes, tags, resume_tag table. (Please open in browser)",
+                "operationId": "headNtrIndex",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Chumicat"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Tag",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Cat,Dog"
+                    },
+                    {
+                        "name": "resume",
+                        "in": "query",
+                        "description": "Resume",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get all data"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/ntr/create": {
+            "get": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "create (Please open in browser)",
+                "description": "Add name, resume, tag, resume_rag with form.",
+                "operationId": "getNtrCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Chumicat"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Tag",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Cat,Dog"
+                    },
+                    {
+                        "name": "resume",
+                        "in": "query",
+                        "description": "Resume",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Finish operation"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "create (Please open in browser)",
+                "description": "Add name, resume, tag, resume_rag with form.",
+                "operationId": "headNtrCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Chumicat"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Tag",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Cat,Dog"
+                    },
+                    {
+                        "name": "resume",
+                        "in": "query",
+                        "description": "Resume",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Finish operation"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/ntr/{id}": {
+            "get": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "show (Please open in browser)",
+                "description": "Display the specified name, tag, resume with its id. (Please open in browser)",
+                "operationId": "getNtrShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Finish operation"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "NTR"
+                ],
+                "summary": "show (Please open in browser)",
+                "description": "Display the specified name, tag, resume with its id. (Please open in browser)",
+                "operationId": "headNtrShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resume ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Finish operation"
+                    },
+                    "500": {
+                        "description": "Server error"
+>>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     }
                 }
             }
@@ -864,7 +1119,11 @@
                         "description": "Successful store"
                     },
                     "400": {
+<<<<<<< HEAD
                         "description": "Bad request ('tag' are necessary)"
+=======
+                        "description": "Bad request ('tag' is necessary)"
+>>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
                     },
                     "422": {
                         "description": "Unprocessable Entity (Only 'tag' is acceptable)"

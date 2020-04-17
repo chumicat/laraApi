@@ -53,7 +53,11 @@ class NameController extends Controller
      *     ),
      *     @OA\Response(response=200, description="Name already exist"),
      *     @OA\Response(response=201, description="Successful store"),
+<<<<<<< HEAD
      *     @OA\Response(response=400, description="Bad request ('name' are necessary)"),
+=======
+     *     @OA\Response(response=400, description="Bad request ('name' is necessary)"),
+>>>>>>> ce0ccfd6c6a003b5147ed10f571e3861eb00e24e
      *     @OA\Response(response=422, description="Unprocessable Entity (Only 'name' is acceptable)"),
      *     @OA\Response(response=500, description="Server error"),
      * )
