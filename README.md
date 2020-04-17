@@ -31,6 +31,21 @@ bash lara.sh init -d # Run this if hadn't start docker-daemon
 ### Well done!
 &nbsp;&nbsp;&nbsp;&nbsp;Well done!! Site must had show on your browser.
 
+### When Finish...
+* If you want to down the server, run the command below:
+  ```bash
+  bash lara.sh down
+  ```
+* If you want to start it again, run the command below:
+  ```bash
+  bash lara.sh up
+  ```
+* If you want to enter the environment, run the command below:
+  ```bash
+  bash lara.sh enter
+  ```
+* For more commands, see [lara command](#lara-command) section
+
 ## API Usage
 ### Browser All Data
 * You can see all data through browser at [NTR local site](http://laravel.test/ntr) after initial the project.
